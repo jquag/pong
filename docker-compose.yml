@@ -1,0 +1,15 @@
+version: "3"
+services:
+  api:
+    build: ./pong-api
+    ports:
+        - 4000:4000
+
+  web:
+    build: ./pong-vue
+    ports:
+      - 80:8080
+    volumes:
+        - "./config:/app/dist/config"
+    depends_on:
+      - api

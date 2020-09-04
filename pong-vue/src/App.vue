@@ -1,11 +1,38 @@
 <template>
   <div id="app">
     <pong-header/>
-    <div class="content">
+    <div v-if="error">{{error}}</div>
+    <div v-else-if="loading">Loading...</div>
+    <div v-else class="content">
       <router-view/>
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import config from './services/config';
+
+@Component
+export default class HelloWorld extends Vue {
+  loading = true;
+  error = '';
+
+  created() {
+    config.load().then(success => {
+      if (success) {
+        this.loading = false;
+        console.log('config loaded', config.apiRoot);
+      } else {
+        throw new Error('failed to load config');
+      }
+    }).catch(err => {
+      this.loading = false;
+      this.error = 'Failed to load the application';
+    });
+  }
+}
+</script>
 
 <style>
 

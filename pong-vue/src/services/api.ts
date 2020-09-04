@@ -1,3 +1,5 @@
+import config from './config';
+
 function postOptionsWithBody(body: any): any {
     return {
         method: 'POST',
@@ -11,7 +13,7 @@ function postOptionsWithBody(body: any): any {
 
 export default {
     createGame: async function(game: {code: string}) {
-        const res = await fetch('/api/game', postOptionsWithBody(game));
+        const res = await fetch(`${config.apiRoot}/api/game`, postOptionsWithBody(game));
         return await res.json();
     }
 }

@@ -1,6 +1,7 @@
 const express = require('express')
 const Util = require('./Util');
 const gameMessageHandler = require('./GameMessageHandler');
+const cors = require('cors')
 
 const port = 4000
 
@@ -11,6 +12,7 @@ const gameSessions = {};
 const games = {};
 
 app.use(express.json());
+app.use(cors());
 
 app.post('/api/game', function(req, res) {
     //TODO validate request
