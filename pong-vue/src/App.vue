@@ -100,6 +100,18 @@ label > input {
   margin-left: var(--space);
 }
 
+.ml1 {
+  margin-left: var(--space);
+}
+
+.ml2 {
+  margin-left: calc(var(--space)*2);
+}
+
+.ml3 {
+  margin-left: calc(var(--space)*3);
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

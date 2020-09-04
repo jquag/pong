@@ -7,7 +7,10 @@
           <div v-else>--</div>
         </div>
         <div class="status">
-          <div class="quit"><router-link to="/" class="red">Quit game</router-link></div>
+          <div class="actions">
+            <div class="quit"><router-link to="/" class="red">Quit game</router-link></div>
+            <div class="rematch ml3" v-if="status === 'game-over'"><a href="#" @click.prevent="resetGame()">Rematch</a></div>
+          </div>
           <div v-if="status === 'loading'">Loading...</div>
           <div v-else-if="status === 'error'">
             Failed to load the game <font-awesome-icon icon='frown'/>
@@ -152,6 +155,10 @@ export default class Game extends Vue {
       this.ws.send(JSON.stringify({type: 'game-status', status: 'ready-to-start-point', playerNumberToStart: this.playerNumber}));
     }
   }
+
+  resetGame() {
+    console.log('reset game');
+  }
 }
 </script>
 
@@ -181,6 +188,11 @@ export default class Game extends Vue {
     justify-self: center;
     text-align: center;
     color: var(--color-orange);
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
   }
 
   .quit {

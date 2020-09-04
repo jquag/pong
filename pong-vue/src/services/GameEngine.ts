@@ -33,7 +33,7 @@ type GameEngineEvent = {
 
 type GameCanvasEventHandler = (evt: GameEngineEvent) => void;
 
-const POINTS_TO_WIN = 5;
+const POINTS_TO_WIN = 2;
 
 export default class GameEngine {
   canvas: HTMLCanvasElement;
@@ -441,6 +441,9 @@ export default class GameEngine {
   }
 
   private renderPuck() {
+    if (this.game.status === 'game-over') {
+      return;
+    }
     if (this.game.status === 'ready-to-start-point') {
       //adjust puck to center on server's paddle to avoid jumping effect
       const possessingPlayerNumber = this.isDefending() ? this.playerNumber : this.opponentNumber;
